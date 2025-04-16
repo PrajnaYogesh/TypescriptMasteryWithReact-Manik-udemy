@@ -7,6 +7,7 @@
 //     name:"Mark",
 //     score:90,
 // }]
+//iterate over Array of obj ect
 // for(const student of students){
 //     console.log("Name:" ,student.name);
 //     console.log("Score:" ,student.score);
@@ -18,6 +19,7 @@
 // console.log(addNumbers(2,3));
 // console.log(addNumbers("text",3));
 // ===============================
+//  ---------------------------SECTION 2 PRIMITIVE TYPES--------------------------
 // primitive types example
 // 1. string
 var firstName = "Prajna";
@@ -90,3 +92,72 @@ let fetched = null;
 let users = undefined;
 let largeNumber = 9007199254740991n;
 let unique = Symbol("uniqueSymbol");
+// ======================================================================================================================
+//  ---------------------------SECTION 3 EXPLORING TYPE SYSTEM--------------------------
+//17. any type
+let firstname = "Praj";
+firstname = 123;
+firstname = [];
+//here implicitly return value will be of type any,unless you specify the type of param
+function returnParam(param) {
+    return param;
+}
+//18. Unknown - used when you dont know the type intially during declaration,but may know in future.
+function multiplyByTwo(number) {
+    if (typeof number === "number") {
+        return number * 2;
+    }
+    return "Please provide valid number";
+}
+console.log(multiplyByTwo(4));
+console.log(multiplyByTwo("hey"));
+let stringOrNumber = 1233;
+let canBeStringAlso = "hey";
+function print(input) {
+    if (input) {
+        console.log(input);
+    }
+    else {
+        console.log("Please input something to print");
+    }
+}
+print();
+print("Hello world");
+let post = {
+    title: "This is title",
+    content: "this is content",
+    date: new Date(),
+};
+let posts = {
+    title: "This is title",
+    content: "this is content",
+    date: new Date(),
+    author: {
+        name: "Praj",
+        age: 34,
+    }
+};
+let post1 = {
+    title: "This is title",
+    content: "this is content",
+    date: new Date(),
+};
+let posts1 = {
+    title: "This is title",
+    content: "this is content",
+    date: new Date(),
+    author: {
+        name: "Praj",
+        age: 34,
+    },
+    awards: {
+        web1: {
+            name: "web 1 award",
+            date: new Date(),
+        },
+        web2: {
+            name: "web 2 award",
+            date: new Date(),
+        }
+    }
+};

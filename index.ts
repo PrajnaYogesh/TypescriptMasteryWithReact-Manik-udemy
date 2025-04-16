@@ -7,7 +7,7 @@
 //     score:90,
 // }]
 
-
+//iterate over Array of obj ect
 // for(const student of students){
 //     console.log("Name:" ,student.name);
 //     console.log("Score:" ,student.score);
@@ -23,6 +23,7 @@
 // console.log(addNumbers("text",3));
 
 // ===============================
+//  ---------------------------SECTION 2 PRIMITIVE TYPES--------------------------
 
 
 // primitive types example
@@ -119,5 +120,168 @@ let ages:number = 42;
 let isStudents:boolean = true;
 let fetched:null = null;
 let users:undefined = undefined;
-let largeNumber:BigInt = 9007199254740991n;
+let largeNumber:bigint = 9007199254740991n;
 let unique:symbol = Symbol("uniqueSymbol");
+
+// ======================================================================================================================
+//  ---------------------------SECTION 3 EXPLORING TYPE SYSTEM--------------------------
+
+//17. any type
+let firstname:any = "Praj";
+firstname=123;
+firstname = []
+
+//here implicitly return value will be of type any,unless you specify the type of param
+function returnParam(param:string){
+    return param
+}
+
+//18. Unknown - used when you dont know the type intially during declaration,but may know in future.
+
+function multiplyByTwo(number:unknown){
+    if(typeof number === "number"){
+        return number * 2;
+    }
+    return "Please provide valid number";
+}
+
+console.log(multiplyByTwo(4));
+console.log(multiplyByTwo("hey"));
+
+
+///////Declaring, annotation and inference
+// declaration is declaring your own type, when multiple complex types must be declared
+// Annotation must be used for simple primitive type
+//inference must be used in least possible ways, when you know the outcome is exactly what it must be, else typescript may take any
+
+//21 . Union -here we will see simple primitive type, complex object type we will see in fiture
+type StringOrNumber = string | number;
+type NumberOrUndefined = number | undefined;
+type StringNumberOrUndefined = string | number | undefined;
+type DateOrUndefined = Date | undefined;
+
+let stringOrNumber : StringOrNumber = 1233;
+let canBeStringAlso : StringOrNumber = "hey";
+
+function print(input : StringNumberOrUndefined){
+    if(input){
+        console.log(input);
+           }else{
+            console.log("Please input something to print");
+           }
+}
+
+print();
+print("Hello world");
+//===============================================================================================
+//22. Conditional types -> assigning types using conditional statements.not assigning the values here, instead type
+type CustomDate = Date;
+type CustomString = string;
+
+type TrueString = CustomString extends string? true : false;
+type IsThisDate = CustomDate extends Date ? Date : undefined;
+
+//===============================================================================================
+// 23. Type hierarcy
+//24. Typecasting  => use "as" or <> 
+
+//28 ========================OBJECTS==================
+
+// the stricter way to create an object is first create an type alias that defines all the properties your object will hold and then create the object below.
+//you cannnot add a new alue to object directly unless it is defined in the type. 
+//type will have ; and object will have , 
+
+type Post = {
+    title :string;
+    content : string;
+    date : Date;
+};
+
+let post : Post = {
+    title : "This is title",
+    content : "this is content",
+    date : new Date(),
+};
+
+
+//NESTED OJECT
+type Author ={
+    name:string;
+    age:number;
+};
+
+type Posts = {
+    title :string;
+    content : string;
+    date :Date;
+    author : Author;
+}
+
+let posts : Posts = {
+    title : "This is title",
+    content : "this is content",
+    date : new Date(),
+    author:{
+        name: "Praj",
+        age:34,
+    }
+}
+
+//31. Index signatures - can be used when you have patterns, can have only 1 index signature. key can be a string or number
+
+type Post1 = {
+    title :string;
+    content : string;
+    date : Date;
+};
+
+let post1 : Post1 = {
+    title : "This is title",
+    content : "this is content",
+    date : new Date(),
+};
+
+
+//NESTED OJECT
+type Author1 ={
+    name:string;
+    age:number;
+};
+
+type AwardDetails = {
+    name:string;
+    date: Date;
+}
+
+type Awards ={
+    [key:string]:AwardDetails;
+}
+
+
+type Posts1 = {
+    title :string;
+    content : string;
+    date :Date;
+    author : Author1;
+    awards:Awards;
+}
+
+let posts1 : Posts1 = {
+    title : "This is title",
+    content : "this is content",
+    date : new Date(),
+    author:{
+        name: "Praj",
+        age:34,
+    },
+    awards :{
+        web1:{
+name:"web 1 award",
+date : new Date(),
+        },
+        web2: {
+            name:"web 2 award",
+            date : new Date(),
+        }
+    }
+}
