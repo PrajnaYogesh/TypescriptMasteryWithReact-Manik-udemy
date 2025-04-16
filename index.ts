@@ -226,9 +226,11 @@ let posts : Posts = {
         age:34,
     }
 }
-
+//====================================================================================================
 //31. Index signatures - can be used when you have patterns, can have only 1 index signature. key can be a string or number
-
+//using index you can set a property that you donot know before hand. 
+// you can set this property using [key:string] or [key:number] and you can define their values later as per the key .
+//here web1,web2 are the key.they are string. so we used [key:string]
 type Post1 = {
     title :string;
     content : string;
@@ -285,3 +287,54 @@ date : new Date(),
         }
     }
 }
+
+//====================================================================================================
+
+//32. Optional property - In javascript if you declare an object, while defining the object mayor may not have values for all the properties declared.
+//but in TS, once you clare a type ,while definig its values all properties must ne mandatorily set. in case you want to make something optional,then use this optional 
+//use ? to make an propety optional
+
+type School =  {
+    sname:string;
+    area? :string;
+}
+
+type SInfo = {
+name:string;
+school : School;
+}
+
+let student:SInfo = {
+    name : "Praj",
+    school :{
+        sname: "Bharath",
+        area:"ullal"
+    }
+}
+
+let student1:SInfo = {
+    name : "Praj",
+    school :{
+        sname: "Bharath",
+        
+    }
+   
+}
+
+//===========================================================================================
+
+// read only property - property once declared and assigned a value, cannot be changed 
+type Authors ={
+    name:string;
+    age:number;
+    readonly book : "DSA"|"Java";
+    }
+
+    let fiction:Authors = {
+        name:"Praj",
+        age:10,
+        book :"DSA"
+
+    }
+//cannot change value of book
+// fiction.book="SE"  => not allowed
